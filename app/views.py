@@ -6,13 +6,13 @@ This file creates your application.
 """
 
 from app import app
-from flask import render_template, request
+from flask import render_template, request,redirect,url_for,jsonify,g
 
 ###
 # Routing for your application.
 ###
 
-@app.route('/upload', methods=['POST'])
+@app.route('/api/upload', methods=['POST'])
 def upload():
     photoform = UploadForm()
     if not session.get('logged_in'):
@@ -21,10 +21,14 @@ def upload():
             photo = request.files['photo']
             filename = secure_filename(photo.filename)
             photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename ))
-            flash('File Saved', 'success')
-            return redirect(url_for('uploaded_file', filename=filename))
-        
-    return render_template('upload.html',form=photoform)
+            file=[{ "message": "File Upload Successful"
+                 "filename": "you-uploaded-file.jpg"
+                 "description": "Some description for your image"}]
+            return jasonify(file=file)
+        else:
+            return form_errors()
+I
+            
 
 
 # Please create all new routes and view functions above this route.
