@@ -18,6 +18,12 @@ Vue.component('app-header', {
     `
 });
 
+Vue.component('upload-form'),{
+    template: `
+
+`
+});
+
 Vue.component('app-footer', {
     template: `
     <footer>
