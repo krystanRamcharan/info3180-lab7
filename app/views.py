@@ -21,8 +21,8 @@ def upload():
             photo = request.files['photo']
             filename = secure_filename(photo.filename)
             photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename ))
-            file=[{ "message": "File Upload Successful"
-                 "filename": "you-uploaded-file.jpg"
+            file=[{ "message": "File Upload Successful",
+                 "filename": "you-uploaded-file.jpg",
                  "description": "Some description for your image"}]
             return jasonify(file=file)
         else:
